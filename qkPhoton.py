@@ -8,13 +8,16 @@ from random import randint
 #D     /    \
 
 class qkPhoton:
+
     def __init__(self):
+
         self.randomBit = -1
         self.randomBasis = ""
         self.polarization = "~"
 
     #Sets a random bit
     def setRandomBit(self):
+
         self.randomBit=randint(0,1)
         return self.randomBit
 
@@ -22,6 +25,7 @@ class qkPhoton:
     #R = rectilinear
     #D = diagonal
     def setRandomBasis(self):
+
         x = randint(0,1)
         if x == 0:
             self.randomBasis = "R"
@@ -56,6 +60,7 @@ class qkPhoton:
     #arg1 = the measuring basis
     #Returns a polarization
     def measure(self, arg1):
+
         if arg1 != "R" and arg1 != "D":
             return 0
         if arg1 == self.randomBasis:
@@ -64,10 +69,10 @@ class qkPhoton:
             if arg1 == "R":
                 x = randint(0,1)
                 if x == 0:
-                    self.polarization("|")
+                    self.polarization = "|"
                     return "|"
                 else:
-                    self.polarization("-")
+                    self.polarization = "-"
                     return "-"
             elif arg1 == "D":
                 x = randint(0,1)
