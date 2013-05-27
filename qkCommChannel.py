@@ -10,3 +10,8 @@ __author__ = 'Jakehp'
 #functions
 ##########
 #getPhotonPulse()
+class qkCommChannel:
+
+    def __init__(self):
+        self.photonPulse = []
+        self.basisChecks = []
