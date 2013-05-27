@@ -11,12 +11,13 @@ Bob = qkReceiver.qkReceiver()
 
 #Creation, sending, attacking and receiving of photons
 Alice.createPhotonPulse()
-Alice.send(insecureChannel, Alice.photonPulse)
+Alice.send(insecureChannel, Alice.qkCommChannelPP)
 #Eve.attack(insecureChannel)
-#Bob.receive(insecureChannel)
+Bob.measurePolarizations(insecureChannel)
 
 #Sending basis's to bob
 Alice.sendBasisChecks(insecureChannel, Alice.basisCheck)
 
+Alice.printAll()
 insecureChannel.printAll()
-
+Bob.printAll()

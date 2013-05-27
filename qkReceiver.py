@@ -1,5 +1,6 @@
 __author__ = 'Jakehp'
 from random import randint
+import qkPhoton
 import qkCommChannel
 
 
@@ -13,7 +14,7 @@ class qkReceiver:
         self.recordedPolarizations = []
         self.randomBasis = []
 
-    #setRandomBasis
+    #Computes random basis's for randomBasis list
     def setRandomBasis(self):
         self.randomBasis.clear()
         i = 0
@@ -28,12 +29,20 @@ class qkReceiver:
     #Measure and record all polarizations from photon pulse in the comm channel
     def measurePolarizations(self, insecureCommChannel):
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg'
-        if len(self.receivedPolarizations) != len(self.randomBasis):
-            print("Receiver's photon pulse size does not match senders/received # of polarizations")
-            return 0
-        if len(insecureCommChannel.photonPulse) == 0:
-            print("Channel has no photons for the receiver")
-            return 0
-
+        if len(insecureCommChannel.photonPulse) != self.PHOTON_PULSE_SIZE:
+            print("CommChannel has no photons for receiver || CommChannel # of pulses != receivers photon_pulse_size")
+            return -1
+        self.setRandomBasis()
+        i = 0
+        while i < self.PHOTON_PULSE_SIZE:
+            tempPho = insecureCommChannel.photonPulse.pop()
+            assert isinstance(tempPho, qkPhoton.qkPhoton) , 'Not a qkPhoton object - Error'
+            self.recordedPolarizations.append(tempPho.measure(self.randomBasis.pop()))
+            i+=1
 
     #receive alice/sender basis's, get all same basis, check for differences in polarization - if so % bit difference -> MITM has measured
+    #def checkBasis(self, insecureCommChannel):
+
+    def printAll(self):
+        print ("qkReceiver recordedPolars: ",self.recordedPolarizations)
+        print ("qkReceiver randomBasis: ",self.randomBasis)

@@ -7,5 +7,5 @@ class qkCommChannel:
         self.basisCheck = []
 
     def printAll(self):
-        print ("PP: ",self.photonPulse)
-        print ("BC: ",self.basisCheck)
+        print ("qkCommChannel PhotonPulse: ",self.photonPulse)
+        print ("qkCommCHannel basisCheck: ",self.basisCheck)
