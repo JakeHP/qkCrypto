@@ -1,9 +1,10 @@
 __author__ = 'Jakehp'
 import qkCommChannel
 import qkPhoton
-import qkPhotonPulse
 
 class qkSender:
+
+    PHOTON_PULSE_SIZE = 128
 
     def __init__(self):
         self.photonPulse = []
@@ -13,7 +14,7 @@ class qkSender:
         self.photonPulse.clear()
         self.basisCheck.clear()
         i = 0
-        while i<128:
+        while i < self.PHOTON_PULSE_SIZE:
             self.photonPulse.append(self.createPhoton())
             i+=1
 
@@ -25,14 +26,14 @@ class qkSender:
         data.setPolarization()
         return data
 
-    def send(self, insecureChannel, ppulse):
-        assert isinstance(insecureChannel, qkCommChannel)
-        insecureChannel.qkCommChannel.photonPulse = ppulse
+    def send(self, insecureChannel, pPulse):
+        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg'
+        insecureChannel.photonPulse = pPulse
 
     def sendBasisChecks(self, insecureChannel, basisC):
-        assert isinstance(insecureChannel, qkCommChannel)
-        insecureChannel.qkCommChannel.basicChecks = basisC
+        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg'
+        insecureChannel.basisCheck = basisC
 
-    def printAll(self):
-        print (self.photonPulse)
-        print (self.basisCheck)
+    #def printAll(self):
+    #    print ("PP: ",self.photonPulse)
+    #    print ("BC: ",self.basisCheck)
