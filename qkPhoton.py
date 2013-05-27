@@ -17,7 +17,6 @@ class qkPhoton:
 
     #Sets a random bit
     def setRandomBit(self):
-
         self.randomBit=randint(0,1)
         return self.randomBit
 
@@ -25,7 +24,6 @@ class qkPhoton:
     #R = rectilinear
     #D = diagonal
     def setRandomBasis(self):
-
         x = randint(0,1)
         if x == 0:
             self.randomBasis = "R"
@@ -38,7 +36,6 @@ class qkPhoton:
     #0 for failure, due to random bits or basis not being set
     #1 for success
     def setPolarization(self):
-
         if self.randomBit < 0 or (self.randomBasis != "R" and self.randomBasis != "D"):
                 return 0
         elif self.randomBasis == "R":
@@ -60,7 +57,6 @@ class qkPhoton:
     #arg1 = the measuring basis
     #Returns a polarization
     def measure(self, arg1):
-
         if arg1 != "R" and arg1 != "D":
             return 0
         if arg1 == self.randomBasis:
@@ -75,8 +71,8 @@ class qkPhoton:
                     self.polarization = "-"
                     return "-"
             elif arg1 == "D":
-                x = randint(0,1)
-                if x == 0:
+                y = randint(0,1)
+                if y == 0:
                     self.polarization = "/"
                     return "/"
                 else:
