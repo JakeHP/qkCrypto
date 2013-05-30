@@ -63,6 +63,22 @@ class qkReceiver:
                 self.randomBasis.append("D")
             i+=1
 
+    #Compare sent and received basis
+    def compareBasis(self):
+        ccheckBasis = self.checkBasis.copy()
+        rrandomBasis = self.randomBasis.copy()
+        rrecordedPolarizations = self.recordedPolarizations.copy()
+        if len(ccheckBasis) == self.PHOTON_PULSE_SIZE and len(rrandomBasis) == self.PHOTON_PULSE_SIZE and len(rrecordedPolarizations) == self.PHOTON_PULSE_SIZE:
+            i = 0
+            count = 0
+            while i < self.PHOTON_PULSE_SIZE:
+                if rrandomBasis.pop() == ccheckBasis.pop():
+                    count+=1
+                i+=1
+            print(count)
+
+
+
     def printAll(self):
         print ("qkReceiver recordedPolars: ",self.recordedPolarizations)
         print ("qkReceiver randomBasis: ",self.randomBasis)

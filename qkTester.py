@@ -21,6 +21,7 @@ Bob.measurePolarizations(insecureChannel)
 
 Alice.sendBasisChecks(insecureChannel, Alice.basisCheck)
 Bob.checkSenderBasis(insecureChannel)
+Bob.compareBasis()
 
 #Bob sends ACKS - and Alice retransmits if necessary.
 #Bob.acknowledge(insecureChannel)
