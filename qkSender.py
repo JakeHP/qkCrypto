@@ -9,6 +9,7 @@ class qkSender:
     def __init__(self):
         self.photonPulse = []
         self.basisCheck = []
+        self.photonPolars = []
 
     def createPhotonPulse(self):
         self.photonPulse.clear()
@@ -23,7 +24,8 @@ class qkSender:
         data.setRandomBit()
         basis = data.setRandomBasis()
         self.basisCheck.append(basis)
-        data.setPolarization()
+        polar = data.setPolarization()
+        self.photonPolars.append(polar)
         return data
 
     def send(self, insecureChannel, pPulse):
@@ -38,3 +40,4 @@ class qkSender:
     def printAll(self):
         print ("qkSender Photon Pulse: ",self.photonPulse)
         print ("qkSender Basis Check: ",self.basisCheck)
+        print ("qkSender Photon Polarizations: ",self.photonPolars)
