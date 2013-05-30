@@ -9,7 +9,6 @@ class qkSender:
     def __init__(self):
         self.photonPulse = []
         self.basisCheck = []
-        self.qkCommChannelPP = []
 
     def createPhotonPulse(self):
         self.photonPulse.clear()
@@ -18,7 +17,6 @@ class qkSender:
         while i < self.PHOTON_PULSE_SIZE:
             self.photonPulse.append(self.createPhoton())
             i+=1
-        self.qkCommChannelPP = self.photonPulse.copy()
 
     def createPhoton(self):
         data = qkPhoton.qkPhoton()

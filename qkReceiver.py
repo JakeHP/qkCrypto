@@ -13,6 +13,7 @@ class qkReceiver:
     def __init__(self):
         self.recordedPolarizations = []
         self.randomBasis = []
+        self.checkBasis = []
 
     #Computes random basis's for randomBasis list
     def setRandomBasis(self):
@@ -25,6 +26,10 @@ class qkReceiver:
             else:
                 self.randomBasis.append("D")
             i+=1
+
+    #Simply exists for ease of understanding
+    def receive(self, arg1):
+        self.measurePolarizations(arg1)
 
     #Measure and record all polarizations from photon pulse in the comm channel
     def measurePolarizations(self, insecureCommChannel):
@@ -40,9 +45,25 @@ class qkReceiver:
             self.recordedPolarizations.append(tempPho.measure(self.randomBasis.pop()))
             i+=1
 
-    #receive alice/sender basis's, get all same basis, check for differences in polarization - if so % bit difference -> MITM has measured
-    #def checkBasis(self, insecureCommChannel):
+    #Retrieve sender basis's and check against local random basiss
+    def checkSenderBasis(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg'
+        #Retrieve & Remove sender basis from communication channel
+        i = 0
+        while i < self.PHOTON_PULSE_SIZE:
+            self.checkBasis.append(insecureCommChannel.basisCheck.pop())
+            i+=1
+        #Generate own random basis's
+        i = 0
+        while i < self.PHOTON_PULSE_SIZE:
+            x = randint(0,1)
+            if x == 0:
+                self.randomBasis.append("R")
+            else:
+                self.randomBasis.append("D")
+            i+=1
 
     def printAll(self):
         print ("qkReceiver recordedPolars: ",self.recordedPolarizations)
         print ("qkReceiver randomBasis: ",self.randomBasis)
+        print ("qkReceiver checkBasis: ",self.checkBasis)
