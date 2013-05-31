@@ -17,7 +17,7 @@ class qkSender:
         i = 0
         while i < self.PHOTON_PULSE_SIZE:
             self.photonPulse.append(self.createPhoton())
-            i+=1
+            i += 1
 
     def createPhoton(self):
         data = qkPhoton.qkPhoton()
@@ -29,12 +29,11 @@ class qkSender:
         return data
 
     def send(self, insecureChannel, pPulse):
-        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg1'
+        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecureChannel.photonPulse = pPulse
 
-
     def sendBasisChecks(self, insecureChannel, basisC):
-        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg1'
+        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecureChannel.basisCheck = basisC
 
     def printAll(self):

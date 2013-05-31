@@ -3,8 +3,6 @@ from random import randint
 import qkPhoton
 import qkCommChannel
 
-
-
 #Receivers *cannot* access any photons - except via measurement
 class qkReceiver:
 
@@ -28,10 +26,12 @@ class qkReceiver:
             else:
                 self.randomBasis.append("D")
             i+=1
+        return
 
     #Simply exists for ease of understanding
     def receive(self, arg1):
         self.measurePolarizations(arg1)
+        return
 
     #Measure and record all polarizations from photon pulse in the comm channel
     def measurePolarizations(self, insecureCommChannel):
@@ -42,10 +42,12 @@ class qkReceiver:
         self.setRandomBasis()
         i = 0
         while i < self.PHOTON_PULSE_SIZE:
-            tempPho = insecureCommChannel.photonPulse.pop()
+            tempPho = insecureCommChannel.photonPulse[i]
             assert isinstance(tempPho, qkPhoton.qkPhoton) , 'Not a qkPhoton object - Error'
-            self.recordedPolarizations.append(tempPho.measure(self.randomBasis.pop()))
+            self.recordedPolarizations.append(tempPho.measure(self.randomBasis[i]))
             i+=1
+        insecureCommChannel.photonPulse.clear()
+        return
 
     #Retrieve sender basis's and check against local random basiss
     def checkSenderBasis(self, insecureCommChannel):
@@ -55,26 +57,17 @@ class qkReceiver:
             self.checkBasis = insecureCommChannel.basisCheck.copy()
             insecureCommChannel.basisCheck.clear()
 
-        #Generate own random basis's
-        i = 0
-        while i < self.PHOTON_PULSE_SIZE:
-            x = randint(0,1)
-            if x == 0:
-                self.randomBasis.append("R")
-            else:
-                self.randomBasis.append("D")
-            i+=1
-
     #Compare sent and received basis
     def compareBasis(self):
+        print("RcheckBasis: ",len(self.checkBasis))
+        print("RrandomBasis",len(self.randomBasis))
+        print("RrecordedPolars",len(self.recordedPolarizations))
         if len(self.checkBasis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.recordedPolarizations) == self.PHOTON_PULSE_SIZE:
             i = 0
             count = 0
             while i < self.PHOTON_PULSE_SIZE:
                 if self.randomBasis[i] == self.checkBasis[i]:
                     count+=1
-                #else:
-
                 i+=1
             print("Number Of Similar Basis: ", count, "/", self.PHOTON_PULSE_SIZE)
 
