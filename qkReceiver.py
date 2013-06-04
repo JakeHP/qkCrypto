@@ -11,7 +11,7 @@ class qkReceiver:
     def __init__(self):
         self.recordedPolarizations = []
         self.randomBasis = []
-        self.checkBasis = []
+        self.senderBasis = []
         self.sharedResults = []
         self.sharedKey = []
 
@@ -54,25 +54,27 @@ class qkReceiver:
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg'
         #Retrieve & Remove sender basis from communication channel
         if self.PHOTON_PULSE_SIZE == len(insecureCommChannel.basisCheck):
-            self.checkBasis = insecureCommChannel.basisCheck.copy()
+            self.senderBasis = insecureCommChannel.basisCheck.copy()
             insecureCommChannel.basisCheck.clear()
 
     #Compare sent and received basis
     def compareBasis(self):
-        print("RcheckBasis: ",len(self.checkBasis))
-        print("RrandomBasis",len(self.randomBasis))
-        print("RrecordedPolars",len(self.recordedPolarizations))
-        if len(self.checkBasis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.recordedPolarizations) == self.PHOTON_PULSE_SIZE:
+        if len(self.senderBasis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.recordedPolarizations) == self.PHOTON_PULSE_SIZE:
             i = 0
             count = 0
             while i < self.PHOTON_PULSE_SIZE:
-                if self.randomBasis[i] == self.checkBasis[i]:
-                    count+=1
-                i+=1
+                if self.randomBasis[i] == self.senderBasis[i]:
+                    count += 1
+                i += 1
             print("Number Of Similar Basis: ", count, "/", self.PHOTON_PULSE_SIZE)
+
+    #Send basis to a qkCommChannel for a sender/Alice
+    def sendBasis(self, insecureChannel, basisC):
+        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        insecureChannel.basisCheck = basisC
 
     #Prints all data
     def printAll(self):
-        print ("qkReceiver recordedPolars: ",self.recordedPolarizations)
-        print ("qkReceiver randomBasis: ",self.randomBasis)
-        print ("qkReceiver checkBasis: ",self.checkBasis)
+        print ("qkReceiver recordedPolars:      ",self.recordedPolarizations)
+        print ("qkReceiver basis:               ",self.randomBasis)
+        print ("Sender's Basis:                 ",self.senderBasis)

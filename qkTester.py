@@ -18,16 +18,18 @@ Alice.send(insecureChannel, Alice.photonPulse.copy())
 #Eve.attack(insecureChannel)
 Bob.measurePolarizations(insecureChannel)
 
-    #Sending basis's to bob
+    #Alice sends basis's
 
-Alice.sendBasisChecks(insecureChannel, Alice.basisCheck.copy())
+Alice.sendBasis(insecureChannel, Alice.randomBasis.copy())
 Bob.checkSenderBasis(insecureChannel)
 Bob.compareBasis()
 
-    #Bob sends ACKS - and Alice retransmits if necessary.
+    #Bob sends basis
 
-#Bob.acknowledge(insecureChannel)
-#Alice.checkForRetransmit(insecureChannel)
+Bob.sendBasis(insecureChannel, Bob.senderBasis.copy())
+Alice.checkReceiverBasis(insecureChannel)
+
+    #Alice and bob compare basis to see if a certain # of shared bits was reached. 50
 
 Alice.printAll()
 insecureChannel.printAll()
