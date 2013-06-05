@@ -12,7 +12,6 @@ class qkReceiver:
         self.recordedPolarizations = []
         self.randomBasis = []
         self.senderBasis = []
-        self.sharedResults = []
         self.sharedKey = []
 
     #Computes random basis's for randomBasis list
@@ -27,6 +26,21 @@ class qkReceiver:
                 self.randomBasis.append("D")
             i+=1
         return
+
+    def setBitString(self):
+        if 0 < len(self.recordedPolarizations) < self.PHOTON_PULSE_SIZE:
+            print("TODO")
+        else:
+            print("Error - Photon Polars Size Is Incorrect.")
+
+    def getSubBitString(self, insecureChannel):
+        self.subSharedKey.clear()
+        assert isinstance(insecureChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        if len(insecureChannel.subSharedKey) > 0:
+            self.subSharedKey = insecureChannel.subSharedKey.copy()
+            insecureChannel.subSharedKey.clear()
+        else:
+            print("Error - qkCommChannel has no bit sub string.")
 
     #Simply exists for ease of understanding
     def receive(self, arg1):
@@ -73,8 +87,29 @@ class qkReceiver:
         assert isinstance(insecureChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecureChannel.basisCheck = basisC
 
+    def dropInvalidPolars(self):
+        if len(self.senderBasis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.recordedPolarizations) == self.PHOTON_PULSE_SIZE:
+            i = 0
+            max = self.PHOTON_PULSE_SIZE
+            while i < max:
+                if self.randomBasis[i] != self.senderBasis[i]:
+                    self.randomBasis.pop(i)
+                    self.senderBasis.pop(i)
+                    self.recordedPolarizations.pop(i)
+                    max -= 1
+                else:
+                    i += 1
+        else:
+            print("Error - Required Data Not Initialized.")
+        print("R - Number Of Basis Left: ",len(self.randomBasis))
+
     #Prints all data
     def printAll(self):
         print ("qkReceiver recordedPolars:      ",self.recordedPolarizations)
-        print ("qkReceiver basis:               ",self.randomBasis)
+        print ("qkReceiver Random Basis:        ",self.randomBasis)
         print ("Sender's Basis:                 ",self.senderBasis)
+
+    def printDetails(self):
+        print ("qkSender Photon Polarizations:  ",len(self.recordedPolarizations))
+        print ("qkSender Random Basis:          ",len(self.randomBasis))
+        print ("Receiver's Basis:               ",len(self.senderBasis))
