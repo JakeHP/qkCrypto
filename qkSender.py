@@ -2,6 +2,8 @@ __author__ = 'Jakehp'
 import qkCommChannel
 import qkPhoton
 
+#will extend qkComm in the future
+
 class qkSender:
 
     PHOTON_PULSE_SIZE = 128

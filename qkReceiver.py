@@ -3,6 +3,7 @@ from random import randint
 import qkPhoton
 import qkCommChannel
 
+#will extend qkComm in the future
 #Receivers *cannot* access any photons - except via measurement
 class qkReceiver:
 
