@@ -81,16 +81,47 @@ class qkSender:
                     i += 1
         else:
             print("Error - Required Data Not Initialized.")
-        print("S - Number Of Basis Left: ",len(self.basis))
+        print("S - Number Of Basis Left: ", len(self.basis))
+
+    def setBitString(self):
+        self.sharedKey.clear()
+        if len(self.photonPolars) <= self.PHOTON_PULSE_SIZE and len(self.photonPolars) > 0:
+            i = 0
+            while i < len(self.photonPolars):
+                if self.photonPolars[i] == 0:
+                    self.sharedKey.append(0)
+                elif self.photonPolars[i] == 90:
+                    self.sharedKey.append(1)
+                elif self.photonPolars[i] == 45:
+                    self.sharedKey.append(0)
+                elif self.photonPolars[i] == 135:
+                    self.sharedKey.append(1)
+                i += 1
 
     def printAll(self):
-        print ("qkSender Photon Pulse:          ",self.photonPulse)
-        print ("qkSender Photon Polarizations:  ",self.photonPolars)
-        print ("qkSender Basis:                 ",self.randomBasis)
-        print ("Receiver's Basis:               ",self.basis)
+        print("qkSender Photon Pulse:          ", self.photonPulse)
+        print("qkSender Photon Polarizations:  ", self.photonPolars)
+        print("qkSender Basis:                 ", self.randomBasis)
+        print("Receiver's Basis:               ", self.basis)
+        print("qkSender's sharedKey:           ", self.sharedKey)
 
     def printDetails(self):
-        print ("qkSender Photon Pulse:          ",len(self.photonPulse))
-        print ("qkSender Photon Polarizations:  ",len(self.photonPolars))
-        print ("qkSender Random Basis:          ",len(self.randomBasis))
-        print ("Receiver's Basis:               ",len(self.basis))
+        print("qkSender Photon Pulse:          ", len(self.photonPulse))
+        print("qkSender Photon Polarizations:  ", len(self.photonPolars))
+        print("qkSender Random Basis:          ", len(self.randomBasis))
+        print("Receiver's Basis:               ", len(self.basis))
+
+    def compareTwoArrays(self, arg1, arg2):
+        test = 0
+        if len(arg1) != len(arg2):
+            print("Two Arrays - Not Equal!")
+        else:
+            i = 0
+            while i < len(arg1):
+                if arg1[i] != arg2[i]:
+                    test = 1
+                i += 1
+            if test == 0:
+                print("Two Arrays - Equal!")
+            else:
+                print("Two Arrays - Not Equal!")

@@ -40,8 +40,8 @@ Bob.dropInvalidPolars()
 
     #Alice and Bob both break their polarizations down into bitstrings/sharedkey
 
-#Alice.setBitString()
-#Bob.setBitString()
+Alice.setBitString()
+Bob.setBitString()
 
     #Alice and Bob compare sub set of the bit string (photon polarizations -> bits)
 
@@ -61,7 +61,6 @@ Bob.dropInvalidPolars()
     #Alice and Bob can now try again in a new channel or use the shared key based on the decision
 
 Alice.printAll()
-Alice.printDetails()
-Bob.printDetails()
 insecureChannel.printAll()
 Bob.printAll()
+Alice.compareTwoArrays(Alice.sharedKey, Bob.sharedKey)
