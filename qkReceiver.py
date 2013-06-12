@@ -93,6 +93,7 @@ class qkReceiver:
         assert isinstance(insecureChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecureChannel.basisCheck = basisC
 
+    #Drops any polarizations where the sender and receiver basis differ'd
     def dropInvalidPolars(self):
         if len(self.otherBasis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.recordedPolarizations) == self.PHOTON_PULSE_SIZE:
             i = 0
@@ -108,6 +109,7 @@ class qkReceiver:
         else:
             print("Error - Required Data Not Initialized.")
 
+    #Analyzes the recorded polarizations to determine the shared key received from a sender through a channel.
     def setBitString(self):
         self.sharedKey.clear()
         if len(self.recordedPolarizations) <= self.PHOTON_PULSE_SIZE and len(self.recordedPolarizations) > 0:
@@ -123,12 +125,14 @@ class qkReceiver:
                     self.sharedKey.append(1)
                 i += 1
 
+    #Sends a subBitString to a qkCommChannel, the sub key is just sharedKey[0->approx half]
     def sendSubBitString(self, insecureCommChannel):
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecureCommChannel.subSharedKey.clear()
         if len(self.sharedKey) > 0:
             insecureCommChannel.subSharedKey = (self.sharedKey[0: (int((len(self.sharedKey))/2))]).copy()
 
+    #Retrieves a subBitString from a qkCommChannel, this will be compared against the local unvalidated shared key
     def getSubBitString(self, insecureCommChannel):
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         self.subSharedKey.clear()
@@ -138,6 +142,7 @@ class qkReceiver:
         else:
             print("Error - CommChannel's Sub Shared Key Is Empty!")
 
+    #Decides if a sub shared key is valid enough, to validate a shared key
     def decide(self):
         if len(self.subSharedKey) > 0 and len(self.sharedKey)>len(self.subSharedKey):
             i = 0
@@ -154,6 +159,7 @@ class qkReceiver:
             self.decision = 0
             print("Error - decide() - otherSubSharedKey || sharedKey - Invalid")
 
+    #Sends a decision to a qkCommChannel
     def sendDecision(self, insecureCommChannel):
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         if self.decision != -1:
@@ -161,6 +167,7 @@ class qkReceiver:
         else:
             print("Error - sendDecision() - decision - Invalid")
 
+    #Retrieves a decision value from a qkCommChannel
     def getDecision(self, insecureCommChannel):
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         if insecureCommChannel != -1:
@@ -172,7 +179,7 @@ class qkReceiver:
         else:
             print("Error - sendDecision() - decision - Invalid")
 
-    #Prints all data
+    #Prints All Data
     def printAll(self):
         print("qkReceiver recordedPolars:      ", self.recordedPolarizations)
         print("qkReceiver Random Basis:        ", self.randomBasis)
@@ -180,6 +187,7 @@ class qkReceiver:
         print("qkReceiver's sharedKey:         ", self.sharedKey)
         print("qkReceiver's subSharedKey:      ", self.subSharedKey)
 
+    #Prints Lengths Of Data
     def printDetails(self):
         print("qkSender Photon Polarizations:  ", len(self.recordedPolarizations))
         print("qkSender Random Basis:          ", len(self.randomBasis))
