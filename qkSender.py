@@ -11,7 +11,7 @@ class qkSender:
     def __init__(self):
         self.photonPulse = []
         self.randomBasis = []
-        self.basis = []
+        self.otherBasis = []
         self.photonPolars = []
         self.sharedKey = []
         self.subSharedKey = []
@@ -59,21 +59,21 @@ class qkSender:
 
     #Retrieve sender basis's and check against local random basiss
     def checkReceiverBasis(self, insecureCommChannel):
-        self.basis.clear()
+        self.otherBasis.clear()
         assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel) , 'Invalid Arg'
         #Retrieve & Remove sender basis from communication channel
         if self.PHOTON_PULSE_SIZE == len(insecureCommChannel.basisCheck):
-            self.basis = insecureCommChannel.basisCheck.copy()
+            self.otherBasis = insecureCommChannel.basisCheck.copy()
             insecureCommChannel.basisCheck.clear()
 
     def dropInvalidPolars(self):
-        if len(self.basis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.photonPulse) == self.PHOTON_PULSE_SIZE and len(self.photonPolars) == self.PHOTON_PULSE_SIZE:
+        if len(self.otherBasis) == self.PHOTON_PULSE_SIZE and len(self.randomBasis) == self.PHOTON_PULSE_SIZE and len(self.photonPulse) == self.PHOTON_PULSE_SIZE and len(self.photonPolars) == self.PHOTON_PULSE_SIZE:
             i = 0
             max = self.PHOTON_PULSE_SIZE
             while i < max:
-                if self.randomBasis[i] != self.basis[i]:
+                if self.randomBasis[i] != self.otherBasis[i]:
                     self.randomBasis.pop(i)
-                    self.basis.pop(i)
+                    self.otherBasis.pop(i)
                     self.photonPolars.pop(i)
                     self.photonPulse.pop(i)
                     max -= 1
@@ -81,7 +81,7 @@ class qkSender:
                     i += 1
         else:
             print("Error - Required Data Not Initialized.")
-        print("S - Number Of Basis Left: ", len(self.basis))
+        print("S - Number Of Basis Left: ", len(self.otherBasis))
 
     def setBitString(self):
         self.sharedKey.clear()
@@ -98,18 +98,34 @@ class qkSender:
                     self.sharedKey.append(1)
                 i += 1
 
+    def sendSubBitString(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        insecureCommChannel.subSharedKey.clear()
+        if len(self.sharedKey) > 0:
+            insecureCommChannel.subSharedKey = (self.sharedKey[0: (int((len(self.sharedKey))/2))]).copy()
+
+    def getSubBitString(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        self.subSharedKey.clear()
+        if len(insecureCommChannel.subSharedKey) > 0:
+            self.subSharedKey = insecureCommChannel.subSharedKey.copy()
+            insecureCommChannel.subSharedKey.clear()
+        else:
+            print("Error - CommChannel's Sub Shared Key Is Empty!")
+
     def printAll(self):
         print("qkSender Photon Pulse:          ", self.photonPulse)
         print("qkSender Photon Polarizations:  ", self.photonPolars)
         print("qkSender Basis:                 ", self.randomBasis)
-        print("Receiver's Basis:               ", self.basis)
+        print("Receiver's Basis:               ", self.otherBasis)
         print("qkSender's sharedKey:           ", self.sharedKey)
+        print("qkSender's sharedKey:           ", self.subSharedKey)
 
     def printDetails(self):
         print("qkSender Photon Pulse:          ", len(self.photonPulse))
         print("qkSender Photon Polarizations:  ", len(self.photonPolars))
         print("qkSender Random Basis:          ", len(self.randomBasis))
-        print("Receiver's Basis:               ", len(self.basis))
+        print("Receiver's Basis:               ", len(self.otherBasis))
 
     def compareTwoArrays(self, arg1, arg2):
         test = 0

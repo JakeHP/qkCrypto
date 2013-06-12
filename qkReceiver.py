@@ -14,18 +14,19 @@ class qkReceiver:
         self.randomBasis = []
         self.otherBasis = []
         self.sharedKey = []
+        self.subSharedKey = []
 
     #Computes random basis's for randomBasis list
     def setRandomBasis(self):
         self.randomBasis.clear()
         i = 0
         while i < self.PHOTON_PULSE_SIZE:
-            x = randint(0,1)
+            x = randint(0, 1)
             if x == 0:
                 self.randomBasis.append("R")
             else:
                 self.randomBasis.append("D")
-            i+=1
+            i += 1
         return
 
     def setBitString(self):
@@ -119,12 +120,28 @@ class qkReceiver:
                     self.sharedKey.append(1)
                 i += 1
 
+    def sendSubBitString(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        insecureCommChannel.subSharedKey.clear()
+        if len(self.sharedKey) > 0:
+            insecureCommChannel.subSharedKey = (self.sharedKey[0: (int((len(self.sharedKey))/2))]).copy()
+
+    def getSubBitString(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        self.subSharedKey.clear()
+        if len(insecureCommChannel.subSharedKey) > 0:
+            self.subSharedKey = insecureCommChannel.subSharedKey.copy()
+            insecureCommChannel.subSharedKey.clear()
+        else:
+            print("Error - CommChannel's Sub Shared Key Is Empty!")
+
     #Prints all data
     def printAll(self):
         print("qkReceiver recordedPolars:      ", self.recordedPolarizations)
         print("qkReceiver Random Basis:        ", self.randomBasis)
         print("Sender's Basis:                 ", self.otherBasis)
         print("qkReceiver's sharedKey:         ", self.sharedKey)
+        print("qkReceiver's subSharedKey:      ", self.subSharedKey)
 
     def printDetails(self):
         print("qkSender Photon Polarizations:  ", len(self.recordedPolarizations))

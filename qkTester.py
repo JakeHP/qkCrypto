@@ -43,14 +43,12 @@ Bob.dropInvalidPolars()
 Alice.setBitString()
 Bob.setBitString()
 
-    #test
     #Alice and Bob compare sub set of the bit string (photon polarizations -> bits)
 
-#Alice.sendSubBitString(insecureChannel)
-#Bob.compareBitStrings(Bob.getSubBitString(insecureChannel))
-#Bob.sendSubBitString(insecureChannel)
-#Alice.compareBitStrings(Alice.getSubBitString(insecureChannel))
-
+Alice.sendSubBitString(insecureChannel)
+Bob.getSubBitString(insecureChannel)
+Bob.sendSubBitString(insecureChannel)
+Alice.getSubBitString(insecureChannel)
 
     #Alice and Bob agree or disagree
 

@@ -11,5 +11,6 @@ class qkCommChannel:
         self.subSharedKey = []
 
     def printAll(self):
-        print ("qkCommChannel PhotonPulse:      ",self.photonPulse)
-        print ("qkCommChannel basisCheck:       ",self.basisCheck)
+        print("qkCommChannel PhotonPulse:      ", self.photonPulse)
+        print("qkCommChannel basisCheck:       ", self.basisCheck)
+        print("qkCommChannel basisCheck:       ", self.subSharedKey)
