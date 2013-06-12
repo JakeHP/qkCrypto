@@ -9,6 +9,7 @@ class qkCommChannel:
         self.photonPulse = []
         self.basisCheck = []
         self.subSharedKey = []
+        self.decision = -1
 
     def printAll(self):
         print("qkCommChannel PhotonPulse:      ", self.photonPulse)

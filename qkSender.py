@@ -7,7 +7,7 @@ import qkPhoton
 class qkSender:
 
     PHOTON_PULSE_SIZE = 128
-    MIN_REQ_OF_SHARED = 5
+    MIN_REQ_OF_SHARED = 25
 
     def __init__(self):
         self.photonPulse = []
@@ -16,7 +16,9 @@ class qkSender:
         self.photonPolars = []
         self.sharedKey = []
         self.subSharedKey = []
-        self.decision = 0
+        self.decision = -1
+        self.otherDecision = -1
+        self.validKey = -1
 
     def createPhotonPulse(self):
         self.photonPulse.clear()
@@ -83,7 +85,6 @@ class qkSender:
                     i += 1
         else:
             print("Error - Required Data Not Initialized.")
-        print("S - Number Of Basis Left: ", len(self.otherBasis))
 
     def setBitString(self):
         self.sharedKey.clear()
@@ -116,7 +117,7 @@ class qkSender:
             print("Error - CommChannel's Sub Shared Key Is Empty!")
 
     def decide(self):
-        if len(self.subSharedKey) > 0 and len(self.sharedKey)>len(self.subSharedKey):
+        if len(self.subSharedKey) > 0 and len(self.sharedKey) > len(self.subSharedKey):
             i = 0
             count = 0
             while i < len(self.subSharedKey):
@@ -130,6 +131,24 @@ class qkSender:
         else:
             self.decision = 0
             print("Error - decide() - otherSubSharedKey || sharedKey - Invalid")
+
+    def sendDecision(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        if self.decision != -1:
+            insecureCommChannel.decision = self.decision
+        else:
+            print("Error - sendDecision() - decision - Invalid")
+
+    def getDecision(self, insecureCommChannel):
+        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
+        if insecureCommChannel != -1:
+            self.otherDecision = insecureCommChannel.decision
+            if self.decision == 1 and self.otherDecision == 1:
+                self.validKey = 1
+            else:
+                self.validKey = 0
+        else:
+            print("Error - sendDecision() - decision - Invalid")
 
     def printAll(self):
         print("qkSender Photon Pulse:          ", self.photonPulse)

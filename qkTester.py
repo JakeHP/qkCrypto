@@ -3,10 +3,6 @@ import qkSender
 import qkCommChannel
 import qkReceiver
 
-    #Amount of similar bits required to be considered a shared key
-
-similar_bit_req = 50
-
     #Entity Creation
 
 Alice = qkSender.qkSender()
@@ -50,23 +46,25 @@ Bob.getSubBitString(insecureChannel)
 Bob.sendSubBitString(insecureChannel)
 Alice.getSubBitString(insecureChannel)
 
-    #Alice and Bob decide, if too many bits were changed.
+    #Alice and Bob decide if each others sub shared keys are "equal" enough to trust the channel and declare a shared key
 
 Alice.decide()
 Bob.decide()
 
     #Alice and Bob send there decisions on whether the shared key is valid, by sending the decision to each other
 
-#Alice.sendDecision(insecureChannel)
-#Bob.getDecision(insecureChannel)
-#Bob.sendDecision(insecureChannel)
-#Alice.getDecision(insecureChannel)
+Alice.sendDecision(insecureChannel)
+Bob.getDecision(insecureChannel)
+Bob.sendDecision(insecureChannel)
+Alice.getDecision(insecureChannel)
 
     #Alice and Bob can now try again in a new channel or use the shared key based on the decision
 
-Alice.printAll()
-insecureChannel.printAll()
-Bob.printAll()
-print(Bob.decision)
-print(Alice.decision)
-Alice.compareTwoArrays(Alice.sharedKey, Bob.sharedKey)
+if Alice.validKey == 1 and Bob.validKey == 1:
+    if Alice.sharedKey == Bob.sharedKey:
+        print("Alice & Bob's Shared Secret Key: ", Alice.sharedKey)
+        print("Length Of Shared Secret Key:     ", len(Alice.sharedKey))
+    else:
+        print("Error in implementation (if no attacker set/req # of sub shared reached)")
+else:
+    print("Alice & Bob have not agreed upon a Shared Secret Key")
