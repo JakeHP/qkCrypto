@@ -4,8 +4,10 @@ Status:
 
 * Protocol Complete - excluding attackers & neatness/cleanup.
 
+* qkTester contains sample run.
+
 todo: 
   
-* Implement attackers
+* Implement attackers.
 
-* Create parent class for qkSender & qkReceiver for shared functionality
+* Create parent class for qkSender & qkReceiver for shared functionality.
