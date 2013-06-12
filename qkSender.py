@@ -2,11 +2,12 @@ __author__ = 'Jakehp'
 import qkCommChannel
 import qkPhoton
 
-#will extend qkComm in the future
 
+#will extend qkComm in the future
 class qkSender:
 
     PHOTON_PULSE_SIZE = 128
+    MIN_REQ_OF_SHARED = 5
 
     def __init__(self):
         self.photonPulse = []
@@ -15,6 +16,7 @@ class qkSender:
         self.photonPolars = []
         self.sharedKey = []
         self.subSharedKey = []
+        self.decision = 0
 
     def createPhotonPulse(self):
         self.photonPulse.clear()
@@ -112,6 +114,22 @@ class qkSender:
             insecureCommChannel.subSharedKey.clear()
         else:
             print("Error - CommChannel's Sub Shared Key Is Empty!")
+
+    def decide(self):
+        if len(self.subSharedKey) > 0 and len(self.sharedKey)>len(self.subSharedKey):
+            i = 0
+            count = 0
+            while i < len(self.subSharedKey):
+                if self.subSharedKey[i] == self.sharedKey[i]:
+                    count += 1
+                i += 1
+            if count >= self.MIN_REQ_OF_SHARED:
+                self.decision = 1
+            else:
+                self.decision = 0
+        else:
+            self.decision = 0
+            print("Error - decide() - otherSubSharedKey || sharedKey - Invalid")
 
     def printAll(self):
         print("qkSender Photon Pulse:          ", self.photonPulse)

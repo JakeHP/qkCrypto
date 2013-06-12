@@ -50,16 +50,23 @@ Bob.getSubBitString(insecureChannel)
 Bob.sendSubBitString(insecureChannel)
 Alice.getSubBitString(insecureChannel)
 
-    #Alice and Bob agree or disagree
+    #Alice and Bob decide, if too many bits were changed.
+
+Alice.decide()
+Bob.decide()
+
+    #Alice and Bob send there decisions on whether the shared key is valid, by sending the decision to each other
 
 #Alice.sendDecision(insecureChannel)
+#Bob.getDecision(insecureChannel)
 #Bob.sendDecision(insecureChannel)
 #Alice.getDecision(insecureChannel)
-#Bob.getDecision(insecureChannel)
 
     #Alice and Bob can now try again in a new channel or use the shared key based on the decision
 
 Alice.printAll()
 insecureChannel.printAll()
 Bob.printAll()
+print(Bob.decision)
+print(Alice.decision)
 Alice.compareTwoArrays(Alice.sharedKey, Bob.sharedKey)

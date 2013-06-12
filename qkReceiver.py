@@ -3,11 +3,13 @@ from random import randint
 import qkPhoton
 import qkCommChannel
 
+
 #will extend qkComm in the future
 #Receivers *cannot* access any photons - except via measurement
 class qkReceiver:
 
     PHOTON_PULSE_SIZE = 128
+    MIN_REQ_OF_SHARED = 5
 
     def __init__(self):
         self.recordedPolarizations = []
@@ -15,6 +17,7 @@ class qkReceiver:
         self.otherBasis = []
         self.sharedKey = []
         self.subSharedKey = []
+        self.decision = 0
 
     #Computes random basis's for randomBasis list
     def setRandomBasis(self):
@@ -134,6 +137,22 @@ class qkReceiver:
             insecureCommChannel.subSharedKey.clear()
         else:
             print("Error - CommChannel's Sub Shared Key Is Empty!")
+
+    def decide(self):
+        if len(self.subSharedKey) > 0 and len(self.sharedKey)>len(self.subSharedKey):
+            i = 0
+            count = 0
+            while i < len(self.subSharedKey):
+                if self.subSharedKey[i] == self.sharedKey[i]:
+                    count += 1
+                i += 1
+            if count >= self.MIN_REQ_OF_SHARED:
+                self.decision = 1
+            else:
+                self.decision = 0
+        else:
+            self.decision = 0
+            print("Error - decide() - otherSubSharedKey || sharedKey - Invalid")
 
     #Prints all data
     def printAll(self):
