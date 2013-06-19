@@ -5,6 +5,7 @@ __author__ = 'Jakehp'
 #####
 #recordedPolars
 #randomBasis
+#spoofedPolars
 
 ##########
 #functions
