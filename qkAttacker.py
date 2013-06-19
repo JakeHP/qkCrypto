@@ -3,7 +3,8 @@ __author__ = 'Jakehp'
 #####
 #data
 #####
-#has a list of recorded polarizations
+#recordedPolars
+#randomBasis
 
 ##########
 #functions
