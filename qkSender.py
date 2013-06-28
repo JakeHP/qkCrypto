@@ -1,13 +1,11 @@
 __author__ = 'Jakehp'
 import qkCommChannel
 import qkPhoton
+import qkComm
 
 
 #will extend qkComm in the future
-class qkSender:
-
-    PHOTON_PULSE_SIZE = 128
-    MIN_REQ_OF_SHARED = 25
+class qkSender(qkComm):
 
     def __init__(self):
         self.photonPulse = []
