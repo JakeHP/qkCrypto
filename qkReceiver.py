@@ -2,11 +2,11 @@ __author__ = 'Jakehp'
 from random import randint
 import qkPhoton
 import qkCommChannel
-
+import qkComm
 
 #will extend qkComm in the future
 #Receivers *cannot* access any photons - except via measurement
-class qkReceiver:
+class qkReceiver(qkComm.qkComm):
 
     PHOTON_PULSE_SIZE = 128
     MIN_REQ_OF_SHARED = 25

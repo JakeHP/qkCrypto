@@ -5,7 +5,7 @@ import qkComm
 
 
 #will extend qkComm in the future
-class qkSender(qkComm):
+class qkSender(qkComm.qkComm):
 
     def __init__(self):
         self.photonPulse = []
