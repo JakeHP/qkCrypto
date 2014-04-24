@@ -3,9 +3,9 @@ __author__ = 'Jakehp'
 #####
 #data
 #####
-#recordedPolars
-#randomBasis
-#spoofedPolars
+#recorded_polars
+#random_basis
+#spoofed_polars
 
 ##########
 #functions

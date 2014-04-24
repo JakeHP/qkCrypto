@@ -12,25 +12,25 @@ class qkReceiver(qkComm.qkComm):
     MIN_REQ_OF_SHARED = 25
 
     def __init__(self):
-        self.recordedPolarizations = []
-        self.randomBasis = []
-        self.otherBasis = []
-        self.sharedKey = []
-        self.subSharedKey = []
+        self.recorded_polarizations = []
+        self.random_basis = []
+        self.other_basis = []
+        self.shared_key = []
+        self.sub_shared_key = []
         self.decision = -1
-        self.otherDecision = -1
-        self.validKey = -1
+        self.other_decision = -1
+        self.valid_key = -1
 
-    #Computes random basis's for randomBasis list
-    def setRandomBasis(self):
-        self.randomBasis.clear()
+    #Computes random basis's for random_basis list
+    def setrandom_basis(self):
+        self.random_basis.clear()
         i = 0
         while i < self.PHOTON_PULSE_SIZE:
             x = randint(0, 1)
             if x == 0:
-                self.randomBasis.append("R")
+                self.random_basis.append("R")
             else:
-                self.randomBasis.append("D")
+                self.random_basis.append("D")
             i += 1
         return
 
@@ -40,31 +40,31 @@ class qkReceiver(qkComm.qkComm):
         return
 
     #Measure and record all polarizations from photon pulse in the comm channel
-    def measurePolarizations(self, insecureCommChannel):
-        assert isinstance(insecureCommChannel, qkCommChannel.qkCommChannel), 'Invalid Arg'
-        if len(insecureCommChannel.photonPulse) != self.PHOTON_PULSE_SIZE:
+    def measurePolarizations(self, insecure_comm_channel):
+        assert isinstance(insecure_comm_channel, qkCommChannel.qkCommChannel), 'Invalid Arg'
+        if len(insecure_comm_channel.photon_pulse) != self.PHOTON_PULSE_SIZE:
             print("CommChannel has no photons for receiver || CommChannel # of pulses != receivers photon_pulse_size")
             return -1
-        self.setRandomBasis()
+        self.setrandom_basis()
         i = 0
         while i < self.PHOTON_PULSE_SIZE:
-            tempPho = insecureCommChannel.photonPulse[i]
+            tempPho = insecure_comm_channel.photon_pulse[i]
             assert isinstance(tempPho, qkPhoton.qkPhoton), 'Not a qkPhoton object - Error'
-            self.recordedPolarizations.append(tempPho.measure(self.randomBasis[i]))
+            self.recorded_polarizations.append(tempPho.measure(self.random_basis[i]))
             i += 1
-        insecureCommChannel.photonPulse.clear()
+        insecure_comm_channel.photon_pulse.clear()
         return
 
     #Prints All Data
     def printAll(self):
-        print("qkReceiver recordedPolars:      ", self.recordedPolarizations)
-        print("qkReceiver Random Basis:        ", self.randomBasis)
-        print("Sender's Basis:                 ", self.otherBasis)
-        print("qkReceiver's sharedKey:         ", self.sharedKey)
-        print("qkReceiver's subSharedKey:      ", self.subSharedKey)
+        print("qkReceiver recorded_polars:      ", self.recorded_polarizations)
+        print("qkReceiver Random Basis:        ", self.random_basis)
+        print("Sender's Basis:                 ", self.other_basis)
+        print("qkReceiver's shared_key:         ", self.shared_key)
+        print("qkReceiver's sub_shared_key:      ", self.sub_shared_key)
 
     #Prints Lengths Of Data
     def printDetails(self):
-        print("qkSender Photon Polarizations:  ", len(self.recordedPolarizations))
-        print("qkSender Random Basis:          ", len(self.randomBasis))
-        print("Receiver's Basis:               ", len(self.otherBasis))
+        print("qkSender Photon Polarizations:  ", len(self.recorded_polarizations))
+        print("qkSender Random Basis:          ", len(self.random_basis))
+        print("Receiver's Basis:               ", len(self.other_basis))
