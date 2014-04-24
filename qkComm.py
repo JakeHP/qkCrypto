@@ -27,7 +27,7 @@ class qkComm(object):
             insecure_comm_channel.basis_check.clear()
 
     #Compare sent and received basis
-    def compareBasis(self):
+    def compare_basis(self):
         if len(self.other_basis) == self.PHOTON_PULSE_SIZE and len(self.random_basis) == self.PHOTON_PULSE_SIZE and len(self.recorded_polarizations) == self.PHOTON_PULSE_SIZE:
             i = 0
             count = 0
@@ -37,9 +37,9 @@ class qkComm(object):
                 i += 1
 
     #Send basis to a qkCommChannel for a sender/Alice
-    def send_basis(self, insecure_channel, basisC):
+    def send_basis(self, insecure_channel, basis_c):
         assert isinstance(insecure_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
-        insecure_channel.basis_check = basisC
+        insecure_channel.basis_check = basis_c
 
 #POLAR STUFF
         #Drops any polarizations where the sender and receiver basis differ'd
@@ -124,7 +124,7 @@ class qkComm(object):
                 if self.sub_shared_key[i] == self.shared_key[i]:
                     count += 1
                 i += 1
-            if count >= self.MIN_REQ_OF_SHARED:
+            if count >= self.MIN_SHARED_REQ:
                 self.decision = 1
             else:
                 self.decision = 0

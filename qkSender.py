@@ -18,35 +18,35 @@ class qkSender(qkComm.qkComm):
         self.other_decision = -1
         self.valid_key = -1
 
-    def createphoton_pulse(self):
+    def create_photon_pulse(self):
         self.photon_pulse.clear()
         self.random_basis.clear()
         i = 0
         while i < self.PHOTON_PULSE_SIZE:
-            self.photon_pulse.append(self.createPhoton())
+            self.photon_pulse.append(self.create_photon())
             i += 1
 
-    def createPhoton(self):
+    def create_photon(self):
         data = qkPhoton.qkPhoton()
-        data.setRandomBit()
-        basis = data.setrandom_basis()
+        data.set_random_bit()
+        basis = data.set_random_basis()
         self.random_basis.append(basis)
-        polar = data.setPolarization()
+        polar = data.set_polarization()
         self.photon_polars.append(polar)
         return data
 
     #Send a photon pulse
-    def send(self, insecure_channel, pPulse):
+    def send(self, insecure_channel, p_pulse):
         assert isinstance(insecure_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
-        insecure_channel.photon_pulse = pPulse
+        insecure_channel.photon_pulse = p_pulse
 
     #Send a basis to a specified qkCommChannel
-    def send_basis(self, insecure_channel, basisC):
+    def send_basis(self, insecure_channel, basis_c):
         assert isinstance(insecure_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
-        insecure_channel.basis_check = basisC
+        insecure_channel.basis_check = basis_c
 
     #Prints All Data
-    def printAll(self):
+    def print_all(self):
         print("qkSender Photon Pulse:          ", self.photon_pulse)
         print("qkSender Photon Polarizations:  ", self.photon_polars)
         print("qkSender Basis:                 ", self.random_basis)
@@ -55,13 +55,13 @@ class qkSender(qkComm.qkComm):
         print("qkSender's shared_key:           ", self.sub_shared_key)
 
     #Prints Lengths Of Data
-    def printDetails(self):
+    def print_details(self):
         print("qkSender Photon Pulse:          ", len(self.photon_pulse))
         print("qkSender Photon Polarizations:  ", len(self.photon_polars))
         print("qkSender Random Basis:          ", len(self.random_basis))
         print("Receiver's Basis:               ", len(self.other_basis))
 
-    def compareTwoArrays(self, arg1, arg2):
+    def compare_two_arrays(self, arg1, arg2):
         test = 0
         if len(arg1) != len(arg2):
             print("Two Arrays - Not Equal!")

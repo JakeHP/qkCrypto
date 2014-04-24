@@ -12,22 +12,22 @@ Bob = qkReceiver.qkReceiver()
 
     #Creation, sending, attacking and receiving+measuring of photons
 
-Alice.createphoton_pulse()
+Alice.create_photon_pulse()
 
 Alice.send(insecure_channel, Alice.photon_pulse.copy())
 #Eve.attack(insecure_channel)
-Bob.measurePolarizations(insecure_channel)
+Bob.measure_polarizations(insecure_channel)
 
     #Alice sends basis's
 
 Alice.send_basis(insecure_channel, Alice.random_basis.copy())
-Bob.checkother_basis(insecure_channel)
-Bob.compareBasis()
+Bob.check_other_basis(insecure_channel)
+Bob.compare_basis()
 
     #Bob sends basis
 
 Bob.send_basis(insecure_channel, Bob.random_basis.copy())
-Alice.checkother_basis(insecure_channel)
+Alice.check_other_basis(insecure_channel)
 
     #Alice and bob compare basis to see if a certain # of shared bits was reached.
 
