@@ -1,12 +1,11 @@
 __author__ = 'Jakehp'
 from random import randint
-import re
-
 #Diagonal Eigenstate    - 45* or 135*
 #Rectilinear Eigenstate - 0* or 90*
 #B     0    1
 #R     |0    -90
 #D     /45    \135
+
 
 class qkPhoton:
 
@@ -54,7 +53,7 @@ class qkPhoton:
                 self.polarization = 135
                 return 135
 
-    #Attempts to measure a photon based on a certain sending basis
+    #Attempts to measure a photon based on a certain sender's basis
     #arg1 = the measuring basis
     #Returns a polarization
     def measure(self, arg1):

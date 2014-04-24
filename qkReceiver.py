@@ -4,7 +4,7 @@ import qkPhoton
 import qkCommChannel
 import qkComm
 
-#will extend qkComm in the future
+
 #Receivers *cannot* access any photons - except via measurement
 class qkReceiver(qkComm.qkComm):
 
@@ -12,7 +12,7 @@ class qkReceiver(qkComm.qkComm):
     MIN_REQ_OF_SHARED = 25
 
     def __init__(self):
-        self.recorded_polarizations = []
+        self.photon_polars = []
         self.random_basis = []
         self.other_basis = []
         self.shared_key = []
@@ -50,21 +50,21 @@ class qkReceiver(qkComm.qkComm):
         while i < self.PHOTON_PULSE_SIZE:
             temp_pho = insecure_comm_channel.photon_pulse[i]
             assert isinstance(temp_pho, qkPhoton.qkPhoton), 'Not a qkPhoton object - Error'
-            self.recorded_polarizations.append(temp_pho.measure(self.random_basis[i]))
+            self.photon_polars.append(temp_pho.measure(self.random_basis[i]))
             i += 1
         insecure_comm_channel.photon_pulse.clear()
         return
 
     #Prints All Data
     def print_all(self):
-        print("qkReceiver recorded_polars:      ", self.recorded_polarizations)
-        print("qkReceiver Random Basis:        ", self.random_basis)
-        print("Sender's Basis:                 ", self.other_basis)
+        print("qkReceiver measured polars       ", self.photon_polars)
+        print("qkReceiver Random Basis:         ", self.random_basis)
+        print("Sender's Basis:                  ", self.other_basis)
         print("qkReceiver's shared_key:         ", self.shared_key)
-        print("qkReceiver's sub_shared_key:      ", self.sub_shared_key)
+        print("qkReceiver's sub_shared_key:     ", self.sub_shared_key)
 
     #Prints Lengths Of Data
     def print_details(self):
-        print("qkSender Photon Polarizations:  ", len(self.recorded_polarizations))
-        print("qkSender Random Basis:          ", len(self.random_basis))
-        print("Receiver's Basis:               ", len(self.other_basis))
+        print("Receiver's Photon Polarizations:  ", len(self.photon_polars))
+        print("Receiver's Random Basis:          ", len(self.random_basis))
+        print("Sender's Basis:                   ", len(self.other_basis))

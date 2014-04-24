@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="79e0640d-dbce-4c0d-b0e5-36836de42dcf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qkComm.py" afterPath="$PROJECT_DIR$/qkComm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qkCommChannel.py" afterPath="$PROJECT_DIR$/qkCommChannel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qkPhoton.py" afterPath="$PROJECT_DIR$/qkPhoton.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qkReceiver.py" afterPath="$PROJECT_DIR$/qkReceiver.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qkSender.py" afterPath="$PROJECT_DIR$/qkSender.py" />
@@ -18,7 +19,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/qkCrypto$qkTester.coverage" NAME="qkTester Coverage Results" MODIFIED="1398365698404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/qkCrypto$qkTester.coverage" NAME="qkTester Coverage Results" MODIFIED="1398369951015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,19 +33,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="qkTester.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="qkTester.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qkTester.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="65" selection-start="2182" selection-end="2182" vertical-scroll-proportion="0.0" vertical-offset="593" max-vertical-offset="1314">
-              <folding />
+            <state line="69" column="65" selection-start="2424" selection-end="2424" vertical-scroll-proportion="0.8938053" vertical-offset="939" max-vertical-offset="1350">
+              <folding>
+                <element signature="e#22#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qkSender.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="qkSender.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qkSender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="6" selection-start="115" selection-end="115" vertical-scroll-proportion="-0.88751924" vertical-offset="702" max-vertical-offset="1476">
+            <state line="47" column="20" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.0" vertical-offset="863" max-vertical-offset="1476">
               <folding>
                 <element signature="e#22#42#0" expanded="true" />
               </folding>
@@ -55,8 +58,10 @@
       <file leaf-file-name="qkReceiver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qkReceiver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="72" selection-start="2626" selection-end="2626" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1296">
-              <folding />
+            <state line="41" column="17" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="1011" max-vertical-offset="1350">
+              <folding>
+                <element signature="e#22#48#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,7 +69,7 @@
       <file leaf-file-name="qkComm.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qkComm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="83" selection-start="5702" selection-end="5702" vertical-scroll-proportion="0.0" vertical-offset="1776" max-vertical-offset="2484">
+            <state line="133" column="38" selection-start="5556" selection-end="5556" vertical-scroll-proportion="-71.55556" vertical-offset="462" max-vertical-offset="2502">
               <folding />
             </state>
           </provider>
@@ -73,7 +78,7 @@
       <file leaf-file-name="qkCommChannel.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qkCommChannel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="32" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+            <state line="16" column="43" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
               <folding />
             </state>
           </provider>
@@ -97,13 +102,13 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/qkCommChannel.py" />
         <option value="$PROJECT_DIR$/qkAttacker.py" />
-        <option value="$PROJECT_DIR$/qkReceiver.py" />
         <option value="$PROJECT_DIR$/qkPhoton.py" />
+        <option value="$PROJECT_DIR$/qkSender.py" />
+        <option value="$PROJECT_DIR$/qkCommChannel.py" />
+        <option value="$PROJECT_DIR$/qkReceiver.py" />
         <option value="$PROJECT_DIR$/qkTester.py" />
         <option value="$PROJECT_DIR$/qkComm.py" />
-        <option value="$PROJECT_DIR$/qkSender.py" />
       </list>
     </option>
   </component>
@@ -426,11 +431,11 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10684089" sideWeight="0.6709265" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18601076" sideWeight="0.6709265" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840237" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45857987" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32837406" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -440,6 +445,27 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988167" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32837406" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18601076" sideWeight="0.6709265" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45857987" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -467,7 +493,9 @@
     <entry file="file://$PROJECT_DIR$/qkTester.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="0" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-          <folding />
+          <folding>
+            <element signature="e#22#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -483,7 +511,9 @@
     <entry file="file://$PROJECT_DIR$/qkReceiver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="13" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0" vertical-offset="468" max-vertical-offset="1350">
-          <folding />
+          <folding>
+            <element signature="e#22#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -504,7 +534,9 @@
     <entry file="file://$PROJECT_DIR$/qkTester.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="0" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-          <folding />
+          <folding>
+            <element signature="e#22#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -520,7 +552,9 @@
     <entry file="file://$PROJECT_DIR$/qkReceiver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="13" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0" vertical-offset="468" max-vertical-offset="1350">
-          <folding />
+          <folding>
+            <element signature="e#22#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -548,7 +582,9 @@
     <entry file="file://$PROJECT_DIR$/qkReceiver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="84" column="0" selection-start="3101" selection-end="3101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
+          <folding>
+            <element signature="e#22#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -586,7 +622,9 @@
     <entry file="file://$PROJECT_DIR$/qkReceiver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
+          <folding>
+            <element signature="e#22#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -613,44 +651,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qkPhoton.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="30" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.94453007" vertical-offset="809" max-vertical-offset="1530">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qkTester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="65" selection-start="2182" selection-end="2182" vertical-scroll-proportion="0.0" vertical-offset="593" max-vertical-offset="1314">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qkComm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="83" selection-start="5702" selection-end="5702" vertical-scroll-proportion="0.0" vertical-offset="1776" max-vertical-offset="2484">
+        <state line="22" column="24" selection-start="458" selection-end="458" vertical-scroll-proportion="0.44334975" vertical-offset="216" max-vertical-offset="1530">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qkCommChannel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="32" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qkReceiver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="72" selection-start="2626" selection-end="2626" vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="1296">
+        <state line="16" column="43" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qkSender.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="6" selection-start="115" selection-end="115" vertical-scroll-proportion="-0.88751924" vertical-offset="702" max-vertical-offset="1476">
+        <state line="47" column="20" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.0" vertical-offset="518" max-vertical-offset="1476">
           <folding>
             <element signature="e#22#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qkReceiver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="17" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="586" max-vertical-offset="1350">
+          <folding>
+            <element signature="e#22#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qkComm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="38" selection-start="5556" selection-end="5556" vertical-scroll-proportion="-71.55556" vertical-offset="462" max-vertical-offset="2502">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qkTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="65" selection-start="2424" selection-end="2424" vertical-scroll-proportion="0.8938053" vertical-offset="939" max-vertical-offset="1350">
+          <folding>
+            <element signature="e#22#37#0" expanded="true" />
           </folding>
         </state>
       </provider>

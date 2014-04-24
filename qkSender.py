@@ -35,30 +35,30 @@ class qkSender(qkComm.qkComm):
         self.photon_polars.append(polar)
         return data
 
-    #Send a photon pulse
-    def send(self, insecure_channel, p_pulse):
+    #send_pulse a photon pulse
+    def send_pulse(self, insecure_channel, p_pulse):
         assert isinstance(insecure_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecure_channel.photon_pulse = p_pulse
 
-    #Send a basis to a specified qkCommChannel
-    def send_basis(self, insecure_channel, basis_c):
+    #send_pulse a basis to a specified qkCommChannel
+    def send_pulse_basis(self, insecure_channel, basis_c):
         assert isinstance(insecure_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecure_channel.basis_check = basis_c
 
     #Prints All Data
     def print_all(self):
-        print("qkSender Photon Pulse:          ", self.photon_pulse)
-        print("qkSender Photon Polarizations:  ", self.photon_polars)
-        print("qkSender Basis:                 ", self.random_basis)
+        print("Sender's Photon Pulse:          ", self.photon_pulse)
+        print("Sender's Photon Polarizations:  ", self.photon_polars)
+        print("Sender's Basis:                 ", self.random_basis)
         print("Receiver's Basis:               ", self.other_basis)
-        print("qkSender's shared_key:           ", self.shared_key)
-        print("qkSender's shared_key:           ", self.sub_shared_key)
+        print("Sender's shared_key:            ", self.shared_key)
+        print("Sender's sub shared_key:        ", self.sub_shared_key)
 
     #Prints Lengths Of Data
     def print_details(self):
-        print("qkSender Photon Pulse:          ", len(self.photon_pulse))
-        print("qkSender Photon Polarizations:  ", len(self.photon_polars))
-        print("qkSender Random Basis:          ", len(self.random_basis))
+        print("Sender's Photon Pulse:          ", len(self.photon_pulse))
+        print("Sender's Photon Polarizations:  ", len(self.photon_polars))
+        print("Sender's Random Basis:          ", len(self.random_basis))
         print("Receiver's Basis:               ", len(self.other_basis))
 
     def compare_two_arrays(self, arg1, arg2):

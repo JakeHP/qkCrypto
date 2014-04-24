@@ -18,49 +18,50 @@ class qkComm(object):
         self.valid_key = -1
 
 #BASIS STUFF
-    #Retrieve sender basis's and check against local random basis
-    def check_other_basis(self, insecure_comm_channel):
+    #Retrieve sender's basis and remove from channel
+    def get_other_basis(self, insecure_comm_channel):
         assert isinstance(insecure_comm_channel, qkCommChannel.qkCommChannel), 'Invalid Arg'
-        #Retrieve & Remove sender basis from communication channel
+        #Retrieve & Remove sender's basis from communication channel
         if self.PHOTON_PULSE_SIZE == len(insecure_comm_channel.basis_check):
             self.other_basis = insecure_comm_channel.basis_check.copy()
             insecure_comm_channel.basis_check.clear()
 
     #Compare sent and received basis
     def compare_basis(self):
-        if len(self.other_basis) == self.PHOTON_PULSE_SIZE and len(self.random_basis) == self.PHOTON_PULSE_SIZE and len(self.recorded_polarizations) == self.PHOTON_PULSE_SIZE:
+        if len(self.other_basis) == self.PHOTON_PULSE_SIZE and len(self.random_basis) == self.PHOTON_PULSE_SIZE:
             i = 0
             count = 0
             while i < self.PHOTON_PULSE_SIZE:
                 if self.random_basis[i] == self.other_basis[i]:
                     count += 1
                 i += 1
+        if i >= self.MIN_SHARED_REQ:
+            print(count)
+        else:
+            print(count)
 
-    #Send basis to a qkCommChannel for a sender/Alice
-    def send_basis(self, insecure_channel, basis_c):
+    #send_pulse basis to a qkCommChannel for a send_pulseer/Alice
+    def send_pulse_basis(self, insecure_channel, basis_c):
         assert isinstance(insecure_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecure_channel.basis_check = basis_c
 
-#POLAR STUFF
-        #Drops any polarizations where the sender and receiver basis differ'd
+    #Drops any polarizations where the sender and receiver basis differ'd
     def drop_invalid_polars(self):
-        if len(self.other_basis) == self.PHOTON_PULSE_SIZE and len(self.random_basis) == self.PHOTON_PULSE_SIZE and len(self.photon_pulse) == self.PHOTON_PULSE_SIZE and len(self.photon_polars) == self.PHOTON_PULSE_SIZE:
+        if len(self.other_basis) == self.PHOTON_PULSE_SIZE and len(self.random_basis) == self.PHOTON_PULSE_SIZE:
             i = 0
-            max = self.PHOTON_PULSE_SIZE
-            while i < max:
+            max_size = self.PHOTON_PULSE_SIZE
+            while i < max_size:
                 if self.random_basis[i] != self.other_basis[i]:
                     self.random_basis.pop(i)
                     self.other_basis.pop(i)
                     self.photon_polars.pop(i)
-                    self.photon_pulse.pop(i)
-                    max -= 1
+                    max_size -= 1
                 else:
                     i += 1
         else:
             print("Error - Required Data Not Initialized.")
 
 #BIT AND SUBBIT STRING STUFF
-    #what happened here...
     #Analyzes the recorded polarizations to determine the shared key received from a sender through a channel.
     def set_bit_string(self):
         self.shared_key.clear()
@@ -87,21 +88,21 @@ class qkComm(object):
         else:
             print("Error - qkCommChannel has no bit sub string.")
 
-    #Sends a subBitString to a qkCommChannel, the sub key is just shared_key[0->approx half]
-    def send_sub_bit_string(self, insecure_comm_channel):
+    #send_pulses a subBitString to a qkCommChannel, the sub key is just shared_key[0->approx half]
+    def send_pulse_sub_bit_string(self, insecure_comm_channel):
         assert isinstance(insecure_comm_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         insecure_comm_channel.sub_shared_key.clear()
         if len(self.shared_key) > 0:
             insecure_comm_channel.sub_shared_key = (self.shared_key[0: (int((len(self.shared_key))/2))]).copy()
 
 #DECISION STUFF
-    #Sends a decision to a qkCommChannel
-    def send_decision(self, insecure_comm_channel):
+    #Sender sends a decision to a qkCommChannel
+    def send_pulse_decision(self, insecure_comm_channel):
         assert isinstance(insecure_comm_channel, qkCommChannel.qkCommChannel), 'Invalid Arg1'
         if self.decision != -1:
             insecure_comm_channel.decision = self.decision
         else:
-            print("Error - send_decision() - decision - Invalid")
+            print("Error - send_pulse_decision() - decision - Invalid")
 
     #Retrieves a decision value from a qkCommChannel
     def get_decision(self, insecure_comm_channel):
@@ -113,7 +114,7 @@ class qkComm(object):
             else:
                 self.valid_key = 0
         else:
-            print("Error - send_decision() - decision - Invalid")
+            print("Error - send_pulse_decision() - decision - Invalid")
 
     #Decides if a sub shared key is valid enough, to validate a shared key
     def decide(self):
@@ -130,4 +131,4 @@ class qkComm(object):
                 self.decision = 0
         else:
             self.decision = 0
-            print("Error - decide() - othersub_shared_key || shared_key - Invalid")
+            print("Error - decide() - sub_shared_key || shared_key - Invalid")
